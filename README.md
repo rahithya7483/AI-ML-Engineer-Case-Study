@@ -47,9 +47,16 @@ Confidence is not taken from the model. It is "high" when the evidence was found
 
 ## Model and cost
 
-Model: `openai/gpt-oss-20b` on Groq. I first tried `llama-3.3-70b-versatile` in the code, then changed to this model.
+Model: `openai/gpt-oss-20b` on Groq.
 
-I did not measure the cost. Each scheme is one call per source document, so the cost depends on document length and the current Groq price. I have not calculated a number, so I am not giving one.
+Cost is an estimate, I did not measure it exactly. I checked Groq's price on 30 October 2026: about $0.075 per 1 million input tokens and $0.30 per 1 million output tokens.
+
+My guess for one real scheme document: about 2,000 input tokens (the prompt plus the document) and about 1,000 output tokens (the answer plus the model's thinking).
+- Input: 2,000 x 0.075 / 1,000,000 = $0.00015
+- Output: 1,000 x 0.30 / 1,000,000 = $0.0003
+- Total: about $0.00045 per document, so about $0.001 per scheme if it has 2 source documents.
+
+For 5,000 schemes that is roughly $5. Retries and long or scanned documents will cost more, so the real number could be a few times higher. My sample files are much shorter than real government PDFs.
 
 ## Results
 
